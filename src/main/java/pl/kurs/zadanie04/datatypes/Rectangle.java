@@ -1,23 +1,42 @@
 package pl.kurs.zadanie04.datatypes;
 
-public class Rectangle extends Figure implements Shape {
+public class Rectangle extends Figure {
+    private double width;
+    private double height;
 
-    private double a;
-    private double b;
+    public Rectangle(double width, double height) {
+        super(false);
+        this.width = width;
+        this.height = height;
+    }
 
-    public Rectangle(double a, double b) {
-        this.a = a;
-        this.b = b;
+    protected Rectangle(double width, double height, boolean useFactory) {
+        super(useFactory);
+        this.width = width;
+        this.height = height;
     }
 
     @Override
-    public double calculatePerimeter() {
-        return 2 * a + 2 * b;
+    public double getCircumference() {
+        return 2 * (width + height);
     }
 
     @Override
-    public double calculateArea() {
-        return a * b;
+    public double getArea() {
+        return width * height;
     }
 
+    @Override
+    public boolean contains(Figure other) {
+        if (other instanceof Rectangle) {
+            Rectangle r = (Rectangle) other;
+            return r.width == this.width && r.height == this.height;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Figure #%d: A rectangle with sides %.1fx%.1f.", number, width, height);
+    }
 }

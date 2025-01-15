@@ -1,7 +1,7 @@
 package pl.kurs.zadanie01.datatypes;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Objects;
 
 public class Child {
 
@@ -11,51 +11,70 @@ public class Child {
     private LocalDate birthDate;
     private int weight;
     private int height;
-    private int motherId;
-    private List<Mother> mother;
+    private Mother mother;
 
-    public Child(int newbornId, Sex sex, String firstName, LocalDate birthDate, int weight, int height, int motherId) {
+    public Child(int newbornId, Sex sex, String firstName, LocalDate birthDate, int weight, int height, Mother mother) {
         this.newbornId = newbornId;
         this.sex = sex;
         this.firstName = firstName;
         this.birthDate = birthDate;
         this.weight = weight;
         this.height = height;
-        this.motherId = motherId;
+        this.mother = mother;
     }
+
 
     public int getNewbornId() {
         return newbornId;
     }
+
     public Sex getSex() {
         return sex;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
     public int getWeight() {
         return weight;
     }
+
     public int getHeight() {
         return height;
     }
-    public int getMotherId() {
-        return motherId;
+
+    public Mother getMother() {
+        return mother;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Child child = (Child) o;
+        return newbornId == child.newbornId && weight == child.weight && height == child.height && sex == child.sex && Objects.equals(firstName, child.firstName) && Objects.equals(birthDate, child.birthDate) && Objects.equals(mother, child.mother);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(newbornId, sex, firstName, birthDate, weight, height, mother);
+    }
+
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " - " +
+        return "Child{" +
                 "newbornId=" + newbornId +
-                ", sex='" + sex + '\'' +
+                ", sex=" + sex +
                 ", firstName='" + firstName + '\'' +
                 ", birthDate=" + birthDate +
                 ", weight=" + weight +
                 ", height=" + height +
-                ", motherId=" + motherId +
+                ", mother=" + mother +
                 '}';
     }
-
 }

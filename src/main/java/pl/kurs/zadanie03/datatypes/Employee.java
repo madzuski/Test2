@@ -2,7 +2,6 @@ package pl.kurs.zadanie03.datatypes;
 
 
 public class Employee extends Person {
-
     private String position;
     private double salary;
 
@@ -12,25 +11,16 @@ public class Employee extends Person {
         this.salary = salary;
     }
 
-    public String getPosition() {
-        return position;
-    }
-
-    @Override
-    public String getDepartment() {
-        return position;
-    }
-
-    @Override
     public double getIncome() {
         return salary;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " {" +
-                "position='" + position + '\'' +
-                ", salary=" + salary +
-                '}';
+    public String getPosition() {
+        return position;
     }
+
+    public double getSalary() {
+        return salary;
+    }
+
 }

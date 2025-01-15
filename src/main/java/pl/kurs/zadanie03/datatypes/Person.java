@@ -1,9 +1,7 @@
 package pl.kurs.zadanie03.datatypes;
 
-import java.io.Serializable;
 
-public class Person implements Serializable {
-
+public abstract class Person {
     private String firstName;
     private String lastName;
     private String pesel;
@@ -15,6 +13,14 @@ public class Person implements Serializable {
         this.pesel = pesel;
         this.city = city;
     }
+
+    public String getPlec() {
+        // Assuming the 10th digit of PESEL determines gender: odd(nieparzyste) for male, even(parzyste) for female
+        int genderDigit = Character.getNumericValue(pesel.charAt(9));
+        return (genderDigit % 2 == 0) ? "Female" : "Male";
+    }
+
+    public abstract double getIncome();
 
     public String getFirstName() {
         return firstName;
@@ -32,26 +38,12 @@ public class Person implements Serializable {
         return city;
     }
 
-    public double getIncome() {
-        return 0;
-    }
-
-    public String getDepartment() {
-        return null;
-    }
-
-    public  Sex getSex() {
-        int sexIndicator = Integer.parseInt(String.valueOf(pesel.charAt(9)));
-        return (sexIndicator % 2 == 0) ? Sex.FEMALE : Sex.MALE;
-    }
-
-
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " {" +
+        return "Person{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", pesel=" + pesel +
+                ", pesel='" + pesel + '\'' +
                 ", city='" + city + '\'' +
                 '}';
     }
