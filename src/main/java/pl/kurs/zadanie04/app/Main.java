@@ -34,7 +34,7 @@ public class Main {
         System.out.println("Largest area: " + largestArea);
 
         // Test contains method
-        System.out.println(figures.get(0).contains(new Square(10))); // true
+        System.out.println(figures.contains(new Square(10))); // true
 
         // Save to file
         //Saves data in binary format (not human-readable)

@@ -1,5 +1,7 @@
 package pl.kurs.zadanie04.datatypes;
 
+import java.util.Objects;
+
 public class Square extends Figure {
 
     private double side;
@@ -35,5 +37,18 @@ public class Square extends Figure {
     @Override
     public String toString() {
         return String.format("Figure #%d: A square with side %.1f.", number, side);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Square square = (Square) o;
+        return Double.compare(side, square.side) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(side);
     }
 }

@@ -1,5 +1,7 @@
 package pl.kurs.zadanie04.datatypes;
 
+import java.util.Objects;
+
 public class Circle extends Figure {
 
     private double radius;
@@ -35,5 +37,18 @@ public class Circle extends Figure {
     @Override
     public String toString() {
         return String.format("Figure #%d: A circle with a radius of %.1f.", number, radius);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circle circle = (Circle) o;
+        return Double.compare(radius, circle.radius) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(radius);
     }
 }
